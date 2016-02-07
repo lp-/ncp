@@ -1,20 +1,20 @@
 {
-  "name": "ncp",
-  "version": "2.0.0",
-  "author": "AvianFlu <charlie@charlieistheman.com>",
-  "description": "Asynchronous recursive file copy utility.",
+  "name": "ncp-plus",
+  "version": "2.0.1",
+  "description": "Asynchronous recursive file copy utility, with no clobber and explicit source and dest args.",
   "bin": {
-    "ncp": "./bin/ncp"
+    "ncp": "./bin/ncp-plus"
   },
   "devDependencies": {
     "mocha": "1.15.x",
-    "rimraf": "1.0.x",
-    "read-dir-files": "0.0.x"
+    "nopt": "^3.0.6",
+    "read-dir-files": "0.0.x",
+    "rimraf": "1.0.x"
   },
   "main": "./lib/ncp.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AvianFlu/ncp.git"
+    "url": "https://github.com/lp-/ncp.git"
   },
   "keywords": [
     "cli",
