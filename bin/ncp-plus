@@ -18,10 +18,6 @@ function startsWith(str, prefix) {
   return str.substr(0, prefix.length) == prefix;
 }
 
-//var opts = {}
-//opts.source = args[0]
-//opts.dest = [args[1]
-
 var opts = nopt( {
   noclobber: Boolean,
   source: String,
