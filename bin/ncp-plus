@@ -5,8 +5,8 @@
 
 var ncp = require('../lib/ncp'),
   nopt = require('nopt'),
-    args = process.argv.slice(2),
-    source, dest;
+  args = process.argv.slice(2),
+  source, dest;
 
 if (args.length < 2) {
   console.error('Usage: ncp [source] [destination] [--no-clobber] [--source sourcepath] [--dest destpath] [--filter=filter] [--limit=concurrency limit]');
@@ -18,58 +18,63 @@ function startsWith(str, prefix) {
   return str.substr(0, prefix.length) == prefix;
 }
 
-var opts = nopt( {
+var opts = nopt({
   noclobber: Boolean,
+  modified: Boolean,
   source: String,
   dest: String,
 }, {
   s: "--source",
   d: "--dest",
-  n: "--noclobber"
+  n: "--noclobber",
+  m: "--modified"
 });
 requiredOpts = true;
 
-if(!opts.source){
+if (!opts.source) {
   opts.source = args[0]
 }
 
-if(!opts.dest){
+if (!opts.dest) {
   opts.dest = args[1]
 }
 
-console.log(opts.source, opts.dest)
-if ( !opts.source || !opts.dest  ) {
+if (!opts.source || !opts.dest) {
   requiredOpts = false;
 }
 
-extraOptions = Object.keys( opts ).filter(function( option ) {
-  return !/source|dest|noclobber|argv/.test( option );
+extraOptions = Object.keys(opts).filter(function(option) {
+  return !/source|dest|modified|noclobber|argv/.test(option);
 });
 
-if ( extraOptions.length ) {
-  console.log( "Invalid options:", extraOptions.join( ", " ), "\n" );
+if (extraOptions.length) {
+  console.log("Invalid options:", extraOptions.join(", "), "\n");
 }
 
-console.log(extraOptions)
-if ( opts.help || !requiredOpts || extraOptions.length ) {
+if (opts.help || !requiredOpts || extraOptions.length) {
   console.log(opts.help, !requiredOpts, extraOptions.length)
-  return console.log( help() );
+  return console.log(help());
 }
 
 var options = {};
-options.clobber = !opts.noclobber
-
-ncp.ncp(opts.source, opts.dest, options, function (err) {
+options.modified = opts.modified
+if(options.modified){
+  options.clobber = false
+}
+else{
+  options.clobber = !opts.noclobber
+}
+var err
+ncp.ncp(opts.source, opts.dest, options, function(err) {
   if (Array.isArray(err)) {
     console.error('There were errors during the copy.');
-    err.forEach(function (err) {
+    err.forEach(function(err) {
       console.error(err.stack || err.message);
     });
     process.exit(1);
-  }
-  else if (err) {
+  } else if (err) {
     console.error('An error has occurred.');
     console.error(err.stack || err.message);
     process.exit(1);
   }
-});
+})

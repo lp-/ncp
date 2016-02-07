@@ -1,6 +1,6 @@
 {
   "name": "ncp-plus",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Asynchronous recursive file copy utility, with no clobber and explicit source and dest args.",
   "bin": {
     "ncp": "./bin/ncp-plus"
