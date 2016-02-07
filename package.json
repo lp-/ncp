@@ -1,9 +1,9 @@
 {
   "name": "ncp-plus",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "Asynchronous recursive file copy utility, with no clobber and explicit source and dest args.",
   "bin": {
-    "ncp": "./bin/ncp-plus"
+    "ncp-plus": "./bin/ncp-plus"
   },
   "devDependencies": {
     "mocha": "1.15.x",
@@ -11,10 +11,10 @@
     "read-dir-files": "0.0.x",
     "rimraf": "1.0.x"
   },
-  "main": "./lib/ncp.js",
+  "main": "./lib/ncp-plus.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lp-/ncp.git"
+    "url": "https://github.com/lp-/ncp-plus.git"
   },
   "keywords": [
     "cli",

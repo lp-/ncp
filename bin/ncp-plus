@@ -3,13 +3,13 @@
 
 
 
-var ncp = require('../lib/ncp'),
+var ncp = require('../lib/ncp-plus'),
   nopt = require('nopt'),
   args = process.argv.slice(2),
   source, dest;
 
 if (args.length < 2) {
-  console.error('Usage: ncp [source] [destination] [--no-clobber] [--source sourcepath] [--dest destpath] [--filter=filter] [--limit=concurrency limit]');
+  console.error('Usage: ncp-plus [source] [destination] [--no-clobber] [--modified] [--source sourcepath] [--dest destpath]');
   process.exit(1);
 }
 
